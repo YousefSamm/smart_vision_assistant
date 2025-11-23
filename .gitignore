@@ -2,29 +2,54 @@
 camera_debug.py
 simple_display_test.py
 smart_glass_simple.py
+smart_glassb_boxes.py
+smart_glass_web.py
+debug_buttons.py
+PROJECT_STRUCTURE.md
 
 # Python cache
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
+.Python
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
 
 # Virtual environments
 venv/
 env/
 ENV/
+.venv
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*.sublime-project
+*.sublime-workspace
 
 # OS
 .DS_Store
 Thumbs.db
+*.log
 
 # Temporary files
 *.tmp
 /tmp/
+*.mp3
+
+# YOLO models (large files)
+*.pt
+!yolov8n.pt  # Keep the default model
+
+# Test outputs
+.pytest_cache/
+.coverage
+htmlcov/
 
