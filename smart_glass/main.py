@@ -7,6 +7,7 @@ Main entry point for the Smart Vision Assistant
 import time
 import threading
 import logging
+import RPi.GPIO as GPIO
 
 from .hardware import GPIOHandler, CameraHandler, UltrasonicSensor
 from .audio import TTSEngine, AudioQueue
@@ -111,27 +112,27 @@ class SmartGlass:
         exit_state = self.gpio_handler.read_button(self.gpio_handler.EXIT_BUTTON_PIN)
         
         # Mode button
-        if mode_state:
+        if mode_state == GPIO.HIGH:
             if (current_time - self.last_button_press[self.gpio_handler.MODE_BUTTON_PIN] > 
                 self.BUTTON_DEBOUNCE_TIME):
                 self.last_button_press[self.gpio_handler.MODE_BUTTON_PIN] = current_time
-                logger.info("Mode button pressed")
+                logger.info("Mode button pressed - calling callback")
                 self._handle_mode_button()
         
         # Confirm button
-        if confirm_state:
+        if confirm_state == GPIO.HIGH:
             if (current_time - self.last_button_press[self.gpio_handler.CONFIRM_BUTTON_PIN] > 
                 self.BUTTON_DEBOUNCE_TIME):
                 self.last_button_press[self.gpio_handler.CONFIRM_BUTTON_PIN] = current_time
-                logger.info("Confirm button pressed")
+                logger.info("Confirm button pressed - calling callback")
                 self._handle_confirm_button()
         
         # Exit button
-        if exit_state:
+        if exit_state == GPIO.HIGH:
             if (current_time - self.last_button_press[self.gpio_handler.EXIT_BUTTON_PIN] > 
                 self.BUTTON_DEBOUNCE_TIME):
                 self.last_button_press[self.gpio_handler.EXIT_BUTTON_PIN] = current_time
-                logger.info("Exit button pressed")
+                logger.info("Exit button pressed - calling callback")
                 self._handle_exit_button()
     
     def _handle_mode_button(self):
@@ -153,9 +154,6 @@ class SmartGlass:
     def _handle_confirm_button(self):
         """Handle confirm button press"""
         logger.info(f"Confirm callback called - current mode: {self.current_mode}")
-        
-        # Interrupt any playing audio first
-        self.audio_queue.interrupt()
         
         if self.current_mode > 0:
             mode_name = self.mode_names[self.current_mode]

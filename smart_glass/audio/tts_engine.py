@@ -43,7 +43,7 @@ class TTSEngine:
             
             # Wait for audio to finish
             while pygame.mixer.music.get_busy():
-                pygame.time.wait(100)
+                time.sleep(0.1)
                 
             # Clean up
             pygame.mixer.music.unload()
