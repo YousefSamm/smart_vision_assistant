@@ -1,0 +1,10 @@
+opencv-python==4.8.1.78
+opencv-contrib-python==4.8.1.78
+ultralytics==8.0.196
+tensorflow==2.10.0
+gTTS==2.3.2
+Pillow==10.0.1
+pytesseract==0.3.10
+numpy==1.24.3
+RPi.GPIO==0.7.1
+pygame==2.5.2

@@ -1,0 +1,30 @@
+# Ignore specific test/debug files
+camera_debug.py
+simple_display_test.py
+smart_glass_simple.py
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+/tmp/
+
